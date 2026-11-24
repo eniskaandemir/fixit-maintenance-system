@@ -49,6 +49,17 @@ FixIt will provide apartment residents with a simple way to report maintenance p
 - Property management checks new requests regularly.
 - The semester data set is small.
 
+### Glossary
+- **Resident:** apartment occupant who reports and tracks a maintenance problem.
+- **Property Manager:** authorized user who reviews and manages maintenance requests.
+- **Maintenance Request:** one reported maintenance problem stored by FixIt.
+- **Category:** type of maintenance problem, such as Plumbing or Electrical.
+- **Priority:** operational urgency assigned to a request.
+- **Status:** current workflow state of a request.
+- **Sprint:** one implementation iteration with a goal, review, and retrospective.
+- **Definition of Done:** agreed conditions that must be satisfied before work is considered complete.
+- **CI:** Continuous Integration; automated checks that run when code changes are pushed or proposed.
+
 ### Risks
 - **Product:** users may prefer phone/messages. Mitigation: keep reporting fast and simple.
 - **Technical:** role permissions may be implemented incorrectly. Mitigation: define and test authorization early.
@@ -146,6 +157,17 @@ Every request must have a unique ID, owner, title, description, category, valid 
 **Maintainability**
 Business logic should be separated into understandable modules and important behavior should have automated tests.
 
+### Measurable quality scenarios
+
+1. **Performance scenario**  
+   Given the semester-scale test data set, when a user opens a normal application page, the server response should complete within **2 seconds** under normal local/test conditions.
+
+2. **Authorization scenario**  
+   Given a resident is signed in, when they attempt to access or modify a maintenance request owned by another resident, the system must deny the operation in **100% of automated authorization tests**.
+
+3. **Data-validity scenario**  
+   Given a maintenance request submission is missing any required field (title, description, or category), the system must reject the submission in **100% of automated validation tests**.
+
 ### Oversized story split
 The large story “As a property manager, I want to manage maintenance requests” is split into:
 - View requests
@@ -197,13 +219,25 @@ PRs should reference the issue, summarize the change, explain testing, and pass 
 - Sprint 1 goal
 
 ### Initial architecture
-A small modular monolith:
-- Authentication
-- Maintenance Requests
-- Management
-- Data layer
+FixIt uses a small modular monolith. Microservices are intentionally not used because the problem does not justify independent deployment or scaling.
 
-Microservices are intentionally not used because the problem does not justify them.
+```mermaid
+flowchart LR
+    R[Resident Browser] --> W[Flask Web Application]
+    M[Property Manager Browser] --> W
+    W --> A[Authentication Module]
+    W --> Q[Maintenance Request Module]
+    W --> G[Management Module]
+    A --> D[(SQLite Database)]
+    Q --> D
+    G --> D
+```
+
+Main logical areas:
+- **Authentication:** login, logout, and role checks.
+- **Maintenance Requests:** create, view, and later edit/cancel resident requests.
+- **Management:** manager-only status, priority, and workflow actions.
+- **Data layer:** persistent storage and integrity rules.
 
 ### Initial domain model
 **User**
@@ -225,6 +259,33 @@ Microservices are intentionally not used because the problem does not justify th
 - resident_id
 
 Relationship: one resident can own many maintenance requests.
+
+### Sprint 0 review
+Sprint 0 achieved the main setup goal:
+- repository and README created,
+- project record and backlog established,
+- workflow and Definition of Done documented,
+- minimal Flask application skeleton created,
+- smoke tests added,
+- GitHub Actions CI configured,
+- issue → branch → pull request → merge trace demonstrated.
+
+During the first CI runs, pytest failed because the application package was not on the Python import path in the GitHub Actions environment. The failure was kept visible instead of being hidden, recorded as issue #10, corrected through PR #11, and verified by a successful CI run.
+
+The main limitation is that the project is currently being completed individually, while the course normally expects a team and a peer-reviewed pull request. No peer review is claimed.
+
+### Sprint 0 retrospective
+**What went well**
+- Work was traceable through issues, branches, pull requests, commits, and CI.
+- The first CI failure exposed a real setup problem early.
+- The fix was handled as a separate issue and pull request.
+
+**What could be improved**
+- CI should be validated before considering a setup task complete.
+- The project board and evidence links should be updated immediately when work changes state.
+
+**Action for Sprint 1**
+Before merging each Sprint 1 feature, verify that its acceptance criteria are represented by automated tests where practical and confirm CI is green before marking the issue Done.
 
 ### Sprint 1 goal
 Deliver the first usable end-to-end maintenance reporting flow: a resident can submit a maintenance request and a property manager can see it.
