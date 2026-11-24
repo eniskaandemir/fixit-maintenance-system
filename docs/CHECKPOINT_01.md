@@ -9,17 +9,20 @@ Provide residents with a simple and transparent way to report maintenance proble
 Scrum with selected XP practices (automated testing, CI, small changes, review discipline).
 
 ## Evidence links
-Fill/update these as repository evidence is created:
 
 - Repository: https://github.com/eniskaandemir/fixit-maintenance-system
 - Project record: [PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md)
 - Issues/backlog: https://github.com/eniskaandemir/fixit-maintenance-system/issues
-- Project board: **To be created in GitHub Projects**
-- Sprint 0 implementation issue: **To be linked**
-- Feature branch: **To be linked**
-- Pull request: **To be linked**
-- Automated test: **To be linked**
-- CI workflow/result: **To be linked**
+- Project board: **To be created manually in GitHub Projects**
+- Sprint 0 implementation issue: https://github.com/eniskaandemir/fixit-maintenance-system/issues/8
+- Feature branch: https://github.com/eniskaandemir/fixit-maintenance-system/tree/feature/8-app-skeleton
+- Pull request: https://github.com/eniskaandemir/fixit-maintenance-system/pull/9
+- Automated tests: https://github.com/eniskaandemir/fixit-maintenance-system/blob/main/tests/test_app.py
+- CI workflow: https://github.com/eniskaandemir/fixit-maintenance-system/blob/main/.github/workflows/ci.yml
+- Actions runs: https://github.com/eniskaandemir/fixit-maintenance-system/actions
+
+## Traceability
+Issue #8 → branch `feature/8-app-skeleton` → implementation commits → PR #9 → documented self-review → squash merge to `main`.
 
 ## Board workflow
 `Backlog → Ready → In Progress → Review → Done`
@@ -28,4 +31,4 @@ Fill/update these as repository evidence is created:
 Deliver the first usable end-to-end maintenance reporting flow: resident submits a request and property manager can see it.
 
 ## Individual-work disclosure
-The repository is currently being developed individually. The course brief normally expects a 3–5 person team and a reviewed PR. No teammate or peer review will be invented. Until a real reviewer is available, the repository uses feature branches, PR traceability, automated CI, and documented self-review as the closest honest substitute.
+The repository is currently being developed individually. The course brief normally expects a 3–5 person team and a reviewed PR. No teammate or peer review is invented. PR #9 includes a documented self-review, while automated CI is used as an additional quality check. This is an honest adaptation of the required process, not a claim that peer review occurred.
