@@ -19,10 +19,13 @@ Scrum with selected XP practices (automated testing, CI, small changes, review d
 - Pull request: https://github.com/eniskaandemir/fixit-maintenance-system/pull/9
 - Automated tests: https://github.com/eniskaandemir/fixit-maintenance-system/blob/main/tests/test_app.py
 - CI workflow: https://github.com/eniskaandemir/fixit-maintenance-system/blob/main/.github/workflows/ci.yml
+- Successful CI run: https://github.com/eniskaandemir/fixit-maintenance-system/actions/runs/45414379868
+- CI fix issue: https://github.com/eniskaandemir/fixit-maintenance-system/issues/10
+- CI fix pull request: https://github.com/eniskaandemir/fixit-maintenance-system/pull/11
 - Actions runs: https://github.com/eniskaandemir/fixit-maintenance-system/actions
 
 ## Traceability
-Issue #8 → branch `feature/8-app-skeleton` → implementation commits → PR #9 → documented self-review → squash merge to `main`.
+Issue #8 → branch `feature/8-app-skeleton` → implementation commits → PR #9 → documented self-review → squash merge to `main`. The initial CI failure was recorded as issue #10, fixed on branch `fix/10-ci-pythonpath`, verified by successful CI run #4, and merged through PR #11.
 
 ## Board workflow
 `Backlog → Ready → In Progress → Review → Done`
