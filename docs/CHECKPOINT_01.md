@@ -12,7 +12,7 @@ The first semester increment focuses on the core reporting flow rather than opti
 
 - Repository: https://github.com/eniskaandemir/fixit-maintenance-system
 - Issue backlog: https://github.com/eniskaandemir/fixit-maintenance-system/issues
-- Project board: **ADD PROJECT BOARD URL**
+- Project board: https://github.com/users/eniskaandemir/projects/1
 - Project documentation: https://github.com/eniskaandemir/fixit-maintenance-system/blob/main/docs/PROJECT_DOCUMENTATION.md
 - Setup instructions: https://github.com/eniskaandemir/fixit-maintenance-system/blob/main/README.md
 
